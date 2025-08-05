@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Games Store</title>
+    <style>
+        /* Base styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Navigation Bar --- */
+        .nav-bar {
+            background-color: #000000;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            height: 2.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fcc419;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            height: 24rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to right, #1d4ed8, #7e22ce);
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-cta-button {
+            background-color: #fcc419;
+            color: #000000;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .hero-cta-button:hover {
+            background-color: #f5c400;
+        }
+        
+        /* --- Free Games Section --- */
+        .free-games-section {
+            padding: 3rem 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .free-games-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .free-games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .free-game-card {
+            background-color: #333333;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        .free-game-card-image {
+            width: 33.333%;
+            object-fit: cover;
+        }
+        
+        .free-game-card-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+        
+        .free-game-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .free-game-card-date {
+            color: #a0a0a0;
+            margin-bottom: 1rem;
+        }
+        
+        .free-game-card-description {
+            margin-bottom: 1rem;
+        }
+
+        .free-game-card-cta {
+            display: inline-block;
+            background-color: #fcc419;
+            color: #000000;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .free-game-card-cta:hover {
+            background-color: #f5c400;
+        }
+
+        /* --- Featured Games Section --- */
+        .featured-games-section {
+            padding: 3rem 1.5rem;
+            background-color: #333333;
+        }
+        
+        .featured-games-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .featured-games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .featured-games-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .featured-games-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .game-card {
+            background-color: #444444;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-card-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+
+        .game-card-content {
+            padding: 1rem;
+        }
+        
+        .game-card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-card-genre {
+            color: #a0a0a0;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-card-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .game-card-price {
+            color: #fcc419;
+            font-weight: bold;
+        }
+
+        .game-card-rating {
+            font-size: 0.875rem;
+        }
+
+        /* --- Discount Section --- */
+        .discount-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .discount-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .discount-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .discount-card {
+            background-color: #333333;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #dc2626;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* For a pill shape */
+        }
+        
+        .discount-card-image {
+            width: 100%;
+            height: 16rem;
+            object-fit: cover;
+        }
+        
+        .discount-card-content {
+            padding: 1.5rem;
+        }
+        
+        .discount-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .discount-prices {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .old-price {
+            color: #a0a0a0;
+            text-decoration: line-through;
+        }
+        
+        .new-price {
+            color: #fcc419;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .discount-cta {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .discount-cta:hover {
+            background-color: #1e40af;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #000000;
+            padding: 3rem 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-heading {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-links-list a {
+            color: #a0a0a0;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links-list a:hover {
+            color: #ffffff;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social-links a {
+            color: #a0a0a0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #4a4a4a;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Epic_Games_logo.png/800px-Epic_Games_logo.png" alt="Epic Games Logo" class="nav-logo">
+            <a href="#" class="nav-link">Store</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Library</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-link">Download</a>
+            <a href="#" class="nav-link">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Your Next Favorite Game</h1>
+            <p class="hero-subtitle">Free games every week. Exclusive discounts. Download and play today.</p>
+            <a href="#" class="hero-cta-button">Get Epic Games</a>
+        </div>
+    </section>
+
+    <!-- Free Games Section -->
+    <section class="free-games-section">
+        <h2 class="section-title">Free Games This Week</h2>
+        <div class="free-games-grid">
+            <div class="free-game-card">
+                <img src="https://www.rocketleague.com/_next/image?url=https%3A%2F%2Fus-west-2-epicgames.graphassets.com%2FA0Gpf4ZpfQzaTePr3NRc1z%2Fresize%3Dfit%3Aclip%2Cheight%3A1080%2Cwidth%3A1920%2Foutput%3Dformat%3Awebp%2Fcmdh5cgs7gxc807obdmvia0hc&w=1920&q=75" alt="Game Cover" class="free-game-card-image">
+                <div class="free-game-card-content">
+                    <h3 class="free-game-card-title">God of War</h3>
+                    <p class="free-game-card-date">FREE NOW - JUN 22</p>
+                    <p class="free-game-card-description">His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters.</p>
+                    <a href="#" class="free-game-card-cta">Get It Now</a>
+                </div>
+            </div>
+            <div class="free-game-card">
+                <img src="https://assets-prd.ignimgs.com/2023/02/28/gow-ascension-1677614907376.jpg" alt="Game Cover" class="free-game-card-image">
+                <div class="free-game-card-content">
+                    <h3 class="free-game-card-title">Subnautica</h3>
+                    <p class="free-game-card-date">FREE NOW - JUN 22</p>
+                    <p class="free-game-card-description">Descend into the depths of an alien underwater world filled with wonder and peril. Craft equipment, pilot submarines, and out-smart wildlife.</p>
+                    <a href="#" class="free-game-card-cta">Get It Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games -->
+    <section class="featured-games-section">
+        <h2 class="section-title">Featured Games</h2>
+        <div class="featured-games-grid">
+            <!-- Game Card 1 -->
+            <div class="game-card">
+                <img src="https://assets-prd.ignimgs.com/2023/02/28/gow-ascension-1677614907376.jpg" alt="Fortnite" class="game-card-image">
+                <div class="game-card-content">
+                    <h3 class="game-card-title">Fortnite</h3>
+                    <p class="game-card-genre">Battle Royale</p>
+                    <div class="game-card-info">
+                        <span class="game-card-price">FREE</span>
+                        <span class="game-card-rating">★ ★ ★ ★ ★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Card 2 -->
+            <div class="game-card">
+                <img src="https://www.rocketleague.com/_next/image?url=https%3A%2F%2Fus-west-2-epicgames.graphassets.com%2FA0Gpf4ZpfQzaTePr3NRc1z%2Fresize%3Dfit%3Aclip%2Cheight%3A1080%2Cwidth%3A1920%2Foutput%3Dformat%3Awebp%2Fcmdh5cgs7gxc807obdmvia0hc&w=1920&q=75" alt="Rocket League" class="game-card-image">
+                <div class="game-card-content">
+                    <h3 class="game-card-title">Rocket League</h3>
+                    <p class="game-card-genre">Sports</p>
+                    <div class="game-card-info">
+                        <span class="game-card-price">FREE</span>
+                        <span class="game-card-rating">★ ★ ★ ★ ★</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Card 3 -->
+            <div class="game-card">
+                <img src="https://www.shutterstock.com/shutterstock/photos/1884089047/display_1500/stock-photo-rocket-league-football-gaming-art-1884089047.jpg" alt="League of Legends" class="game-card-image">
+                <div class="game-card-content">
+                    <h3 class="game-card-title">League of Legends</h3>
+                    <p class="game-card-genre">MOBA</p>
+                    <div class="game-card-info">
+                        <span class="game-card-price">FREE</span>
+                        <span class="game-card-rating">★ ★ ★ ★ ☆</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Card 4 -->
+            <div class="game-card">
+                <img src="https://www.shutterstock.com/shutterstock/photos/2562848973/display_1500/stock-photo-cartoon-artistic-image-of-rocket-league-car-flip-wining-goal-2562848973.jpg" alt="Genshin Impact" class="game-card-image">
+                <div class="game-card-content">
+                    <h3 class="game-card-title">Genshin Impact</h3>
+                    <p class="game-card-genre">Adventure</p>
+                    <div class="game-card-info">
+                        <span class="game-card-price">FREE</span>
+                        <span class="game-card-rating">★ ★ ★ ★ ☆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discount Section -->
+    <section class="discount-section">
+        <h2 class="section-title">Mega Discounts</h2>
+        <div class="discount-grid">
+            <!-- Discount Card 1 -->
+            <div class="discount-card">
+                <div class="discount-badge"> -75% </div>
+                <img src="https://www.shutterstock.com/shutterstock/photos/2562848973/display_1500/stock-photo-cartoon-artistic-image-of-rocket-league-car-flip-wining-goal-2562848973.jpg" alt="Game Cover" class="discount-card-image">
+                <div class="discount-card-content">
+                    <h3 class="discount-card-title">Red Dead Redemption 2</h3>
+                    <div class="discount-prices">
+                        <span class="old-price">$59.99</span>
+                        <span class="new-price">$14.99</span>
+                    </div>
+                    <a href="#" class="discount-cta">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Discount Card 2 -->
+            <div class="discount-card">
+                <div class="discount-badge"> -50% </div>
+                <img src="https://www.shutterstock.com/shutterstock/photos/1884089047/display_1500/stock-photo-rocket-league-football-gaming-art-1884089047.jpg" alt="Game Cover" class="discount-card-image">
+                <div class="discount-card-content">
+                    <h3 class="discount-card-title">Cyberpunk 2077</h3>
+                    <div class="discount-prices">
+                        <span class="old-price">$49.99</span>
+                        <span class="new-price">$24.99</span>
+                    </div>
+                    <a href="#" class="discount-cta">Buy Now</a>
+                </div>
+            </div>
+            
+            <!-- Discount Card 3 -->
+            <div class="discount-card">
+                <div class="discount-badge"> -60% </div>
+                <img src="https://www.rocketleague.com/_next/image?url=https%3A%2F%2Fus-west-2-epicgames.graphassets.com%2FA0Gpf4ZpfQzaTePr3NRc1z%2Fresize%3Dfit%3Aclip%2Cheight%3A1080%2Cwidth%3A1920%2Foutput%3Dformat%3Awebp%2Fcmdh5cgs7gxc807obdmvia0hc&w=1920&q=75" alt="Game Cover" class="discount-card-image">
+                <div class="discount-card-content">
+                    <h3 class="discount-card-title">Assassin's Creed Valhalla</h3>
+                    <div class="discount-prices">
+                        <span class="old-price">$59.99</span>
+                        <span class="new-price">$23.99</span>
+                    </div>
+                    <a href="#" class="discount-cta">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-heading">Epic Games</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Company</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Epic Rewards</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Legal</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Follow Us</h3>
+                <div class="footer-social-links">
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-divider">
+            <p class="footer-copyright">© 2023, Epic Games, Inc. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
